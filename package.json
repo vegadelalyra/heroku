@@ -1,0 +1,22 @@
+{
+  "name": "heroku",
+  "version": "1.0.0",
+  "description": "Soduku app called Heroku. Objective: learn about computational complexity",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "heroku",
+    "sudoku",
+    "computational",
+    "complexity"
+  ],
+  "author": "VegaDeLaLyra",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

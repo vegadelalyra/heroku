@@ -1,0 +1,100 @@
+:root {
+
+    /* background colors */
+    --bg1w: -webkit-linear-gradient(to bottom, #B06AB3, #4568DC); 
+    --bg1m: -moz-linear-gradient(to bottom, #B06AB3, #4568DC);
+    --bg1o: -o-linear-gradient(to bottom, #B06AB3, #4568DC);
+    
+    --bg1:  linear-gradient(to bottom, #B06AB3, #4568DC);
+    --bg1b:  linear-gradient(to top, #B06AB3, #4568DC);
+    
+    --bg2:  linear-gradient(to bottom, #333399, #ff00cc);
+    --bg2b:  linear-gradient(to top, #333399, #ff00cc);
+    /* end of background colors */
+
+    /* font attributes */
+    font-size: 10vh;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* end of font attributes */
+
+    user-select: none;
+}
+
+/* html used to generate the liner-grad smooth transition */
+html {
+    position: relative; /* For the smooth bg transition trick */
+    background: #4568DC;  /* fallback for old browsers */
+    background: var(--bg1w); /* Chrome 10-25, Safari 5.1-6 */
+    background: var(--bg1m); /* Mozilla */
+    background: var(--bg1o); /* ...Opera? xd */
+    background: var(--bg1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height:100%; /* To fix an existing 'to bottom' gradient bg bug */
+} /* pseudo element necessary to create the smooth bg transition */
+
+    html::before {
+            /* Since CSS doesn't have a smooth transition between gradient bg, a little trick with transitioning opacity of a pseudo-class is used*/
+        position: absolute;
+        content: "";
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: var(--bg1b);
+        opacity: 0;
+        z-index: -1;
+        animation: before_smoothTransitionBgColor 8s infinite;
+    } 
+
+    /* animation for the before html - smooth bg transition - */
+@keyframes before_smoothTransitionBgColor {
+
+    50% { opacity: 1 }
+
+    100% { opacity: 0 }
+
+} /* end of animation for the before html - smooth bg transition - */
+/* end of html used to generate the liner-grad smooth transition */
+
+/* body black bg for intro */
+body {
+    background: black;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+        /* To center the basement or main cicle container */
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        /* end of To center the basement or main cicle container */
+}
+
+
+/* The main circle container */
+#basement {
+    /* IT'S ALIVE */
+    transition: transform 0.5s;
+
+    /* RESPONSIVE ESPHERE */
+    width: 400px;
+    height:400px;
+    border-radius: 50%;
+
+    /* dark style for intro */
+    background: linear-gradient(145deg, black, rgb(26, 25, 25));
+    box-shadow:#2b2b2f83 0px 3px 6px 9px;
+    ;
+
+    /* center content */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bolder;
+}
+    #basement:hover {
+        text-shadow: 0px 0px 5px whitesmoke;
+        transform: scale(1.5)
+    }
+
+
+/* End of the main circle container */
