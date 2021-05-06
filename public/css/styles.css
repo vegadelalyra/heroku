@@ -13,7 +13,7 @@
     /* end of background colors */
 
     /* font attributes */
-    font-size: 10vh;
+    font-size: 15vh;
     color: white;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     /* end of font attributes */
@@ -66,23 +66,49 @@ body {
         justify-content: center;
         align-items: center;
         /* end of To center the basement or main cicle container */
-}
+} /* end of body black bg for intro */
 
 
 /* The main circle container */
-#basement {
+
+#container {
+
     /* IT'S ALIVE */
     transition: transform 0.5s;
 
     /* RESPONSIVE ESPHERE */
-    width: 400px;
-    height:400px;
+    --w: 66vh;
+    background: white;
+    border-radius: 50%;
+    width: var(--w);
+    height: var(--w);
+
+}
+    #container:hover {
+        text-shadow: 0px 0px 5px whitesmoke;
+        transform: scale(1.2)
+    }
+
+    /* RESPONSIVE WITH ALL DEVICES */
+@media screen and (max-width: 900px) {
+    #container {
+        --r: 69vw;
+        font-size: 15vw;
+        width: var(--r);
+        height: var(--r);
+    }
+}
+
+#basement {
+
+    /* RESPONSIVE ESPHERE */
+    width: 100%;
+    height:100%;
     border-radius: 50%;
 
     /* dark style for intro */
     background: linear-gradient(145deg, black, rgb(26, 25, 25));
     box-shadow:#2b2b2f83 0px 3px 6px 9px;
-    ;
 
     /* center content */
     display:flex;
@@ -90,11 +116,7 @@ body {
     align-items: center;
     cursor: pointer;
     font-weight: bolder;
-}
-    #basement:hover {
-        text-shadow: 0px 0px 5px whitesmoke;
-        transform: scale(1.5)
-    }
 
+}
 
 /* End of the main circle container */
