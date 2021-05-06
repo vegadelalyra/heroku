@@ -30,7 +30,7 @@ const heroKU = getE('basement') // heroKU main container
 heroKU.addEventListener('click', () => {
     body().style.background = 'transparent'
     heroKU.style.background = 'skyblue'
-    heroKU.style.boxShadow = '#33339983 0px 3px 6px 9px'
+    heroKU.style.boxShadow = '#33339983 0px 3px 6px 9px, var(--blueShadow)'
 })
 
 // end of INTRO
