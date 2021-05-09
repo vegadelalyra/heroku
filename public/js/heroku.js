@@ -15,22 +15,37 @@ const bodyEvt = (evt, fn) => {
     return body().addEventListener(evt, fn)
 }
 
+    //console log
+const clg = any => {
+    return console.log(any)
+}
 
 // end of ANTHOLOGY OF ELEMENTAL FUNCTIONS 
 
 // ALBUM OF ELEMENTAL VARIABLES
 
-const heroKU = getE('basement') // heroKU main container
+const heroku = getE('basement'), // heroKU main container
+      eclipse = getE('eclipse') // moon eclipse effect
 
 // end of ALBUM OF ELEMENTAL VARIABLES
 
 // INTRO 
 
-    // delete black intro when clicks HEROKU
-heroKU.addEventListener('click', () => {
-    body().style.background = 'transparent'
-    heroKU.style.background = 'skyblue'
-    heroKU.style.boxShadow = '#33339983 0px 3px 6px 9px, var(--blueShadow)'
+
+    // resize eclipse white border with the heroKU! when hover
+heroku.addEventListener('mouseover', () => {
+    eclipse.style.transform = 'scale(1.2)'
 })
+heroku.addEventListener('mouseout', () => {
+    eclipse.style.transform = 'scale(1)'
+})
+
+    // delete black intro when clicks HEROKU
+heroku.addEventListener('click', () => {
+    body().style.background = 'transparent'
+    heroku.style.background = 'skyblue'
+    heroku.style.boxShadow = '#33339983 0px 3px 6px 9px, var(--blueShadow)'
+})
+
 
 // end of INTRO

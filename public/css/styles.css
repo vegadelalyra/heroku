@@ -14,11 +14,12 @@
 
     /* font attributes */
     font-size: 15vh;
-    color: white;
+    color: whitesmoke;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     /* end of font attributes */
 
     user-select: none;
+    --vh66: 66vh;
 }
 
 /* html used to generate the liner-grad smooth transition */
@@ -61,7 +62,7 @@ body {
     margin: 0;
     padding: 0;
 
-        /* To center the basement or main cicle container */
+        /* To center the basement or main circle container */
         display:flex;
         justify-content: center;
         align-items: center;
@@ -75,41 +76,32 @@ body {
 
     /* IT'S ALIVE */
     transition: transform 0.5s;
+    position:absolute;
+    z-index:2;
 
     /* RESPONSIVE ESPHERE */
-    --w: 66vh;
+    border: solid 2px white;
     background: white;
     border-radius: 50%;
-    width: var(--w);
-    height: var(--w);
-
+    width: var(--vh66);
+    height: var(--vh66);
 }
     #container:hover {
         text-shadow: 0px 0px 5px whitesmoke;
         transform: scale(1.2)
     }
 
-    /* RESPONSIVE WITH ALL DEVICES */
-@media screen and (max-width: 900px) {
-    #container {
-        --r: 69vw;
-        font-size: 15vw;
-        width: var(--r);
-        height: var(--r);
-    }
-}
-
 #basement {
 
     /* RESPONSIVE ESPHERE */
+    border-radius: 50%;
     width: 100%;
     height:100%;
-    border-radius: 50%;
 
     /* dark style for intro */
     --blueShadow: inset 10px 10px 15px 15px rgba(147, 255, 237, 0.8);
     background: linear-gradient(145deg, black, rgb(26, 25, 25));
-    box-shadow:#2b2b2f83 0px 3px 6px 9px,
+    box-shadow:#2b2b2f83 0px 3px 6px 10px,
     inset 10px 10px 15px 15px rgba(0, 0, 0, 0.8);
 
     /* center content */
@@ -122,3 +114,26 @@ body {
 }
 
 /* End of the main circle container */
+
+/* RESPONSIVE WITH ALL DEVICES */
+
+@media screen and (max-height: 550px) and (max-width: 66px) {
+    #container, #eclipse {
+        --r: 69vw;
+        font-size: 15vw;
+        width: var(--r);
+        height: var(--r);
+    }
+}
+
+@media screen and (max-width: 660px) and (min-height: 551px) {
+    #container, #eclipse {
+        --r: 69vw;
+        font-size: 15vw;
+        width: var(--r);
+        height: var(--r);
+    }
+}
+
+/* end of RESPONSIVE WITH ALL DEVICES */
+
