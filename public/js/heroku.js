@@ -24,26 +24,31 @@ const clg = any => {
 
 // ALBUM OF ELEMENTAL VARIABLES
 
-const heroku = getE('basement'), // heroKU main container
-      eclipse = getE('eclipse') // moon eclipse effect
+const heroku = getE('basement'), // heroKU sphere
+      container = getE('container'), // heroKU main container
+      loader = getE('loader'), // preload screen
+      blackHole = getE('blackHole') // blackHole gif
 
 // end of ALBUM OF ELEMENTAL VARIABLES
 
+
 // INTRO 
 
+    // preload 
+document.addEventListener('DOMContentLoaded', () => {
+    loader.style.opacity = '0'
+    blackHole.style.opacity = '1'
+    blackHole.style.transform = 'scale(0)'
+    heroku.style.transform = 'scale(1)'
+    setTimeout(()=> {loader.remove()}, 1000)
+})
 
-    // resize eclipse white border with the heroKU! when hover
-heroku.addEventListener('mouseover', () => {
-    eclipse.style.transform = 'scale(1.2)'
-})
-heroku.addEventListener('mouseout', () => {
-    eclipse.style.transform = 'scale(1)'
-})
 
     // delete black intro when clicks HEROKU
 heroku.addEventListener('click', () => {
-    body().style.background = 'transparent'
+    container.style.border = 'solid 2px white'
     heroku.style.background = 'skyblue'
+    body().style.background = 'transparent'
     heroku.style.boxShadow = '#33339983 0px 3px 6px 9px, var(--blueShadow)'
 })
 
