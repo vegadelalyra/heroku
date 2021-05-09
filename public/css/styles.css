@@ -82,7 +82,7 @@ body {
 
     /* RESPONSIVE ESPHERE */
     border: solid 2px black;
-    background: black;
+    background: transparent;
     border-radius: 50%;
     width: var(--vh66);
     height: var(--vh66);
