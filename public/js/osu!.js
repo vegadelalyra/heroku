@@ -39,7 +39,7 @@ offlineContext.startRendering()
 
 // Act on the result
 offlineContext.oncomplete = function(e) {
-  // Filtered buffer!asdgfikhnkasdgsadg
+  // Filtered buffer
   let filteredBuffer = e.renderedBuffer
 }
 
