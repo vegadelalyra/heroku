@@ -28,6 +28,7 @@
         heroku.style.transition = 'transform 0.1s'
         heroku.style.transform = 'scale(1)'
         heroku.removeEventListener('click', herokuClick)
+        audioContext.state === 'suspended' ? audioContext.resume() : null
         introSong.play()
     }
 
