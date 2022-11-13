@@ -5,7 +5,7 @@ const express = require('express'),
 // save the express node object in a const
       app = express()
 
-// set port to the one provided for the enviroment; else, use local port 3000
+// set port to the one provided for the environment; else, use local port 3000
 app.set('port', process.env.PORT || 3000)
 
 // static files

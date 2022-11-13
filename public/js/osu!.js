@@ -1,69 +1,18 @@
-// OSU! BEAT DETECTION
+/* With this code, heroku! basement follows the beat.
+**  All of this was done with the Web Audio API, 
+**  some javaScript, and a lot of CSS. Enjoy!
+**
+** In order to code with Audio Web API, 
+**  your first move on your algorithm 
+**  must be to define your modular audio graph.
+** For Heroku! this way: source > analyser > output
+** We won't modify our audio sources yet... 
+** However, songs are going to have 
+**  Cross-fading between two sounds. 
+*/
 
-// Function to identify peaks
-
-function getPeaksAtThreshold(data, threshold) {
-    let peaksArray = [], 
-        length = data.length
-    for(let i = 0; i < length;) {
-        if (data[i] > threshold) {
-            peaksArray.push(i)
-            // Skip forward ~ 1/4s to get past this peak.
-            i += 10000
-        }
-      i++
-    }
-    return peaksArray
-}
-
-// Create offline context
-let offlineContext = new OfflineAudioContext(1, buffer.length, buffer.sampleRate)
-
-// Create buffer source
-let source = offlineContext.createBufferSource()
-source.buffer = buffer
-
-// Create filter
-let filter = offlineContext.createBiquadFilter()
-filter.type = "lowpass"
-
-// Pipe the song into the filter, and the filter into the offline context
-source.connect(filter)
-filter.connect(offlineContext.destination)
-
-// Schedule the song to start playing at time: 0
-source.start(0)
- 
-// Render the song
-offlineContext.startRendering()
-
-// Act on the result
-offlineContext.oncomplete = function(e) {
-  // Filtered buffer
-  let filteredBuffer = e.renderedBuffer
-}
-
-
-// Function used to return a histogram of peak intervals
-
-function countIntervalsBetweenNearbyPeaks(peaks) {
-    let intervalCounts = []
-    peaks.forEach(function(peak, index) {
-      for(let i = 0; i < 10; i++) {
-        let interval = peaks[index + i] - peak;
-        let foundInterval = intervalCounts.some(function(intervalCount) {
-          if (intervalCount.interval === interval)
-            return intervalCount.count++;
-        })
-        if (!foundInterval) {
-          intervalCounts.push({
-            interval: interval,
-            count: 1
-          })
-        }
-      }
-    })
-    return intervalCounts;
-  }
-
-// end of OSU! BEAT DETECTION
+// Got draw your audio graph? Then create your audio context
+    // for Audio Web API implementation
+    audioContext = new AudioContext(), // audio context object
+    audioSourceNode = audioCtx.createMediaElementSource(), // audio graph node for audio source
+    analyserNode = audioContext.createAnalyser() // audio graph node for data analysis

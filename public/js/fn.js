@@ -5,7 +5,7 @@
         return document.getElementById(id)
     }
     
-    // document.body > body
+    // document.body => body
     const body = () => {
         return document.body
     }
@@ -31,10 +31,11 @@
     
 // ALBUM OF ELEMENTAL VARIABLES
     
+    // for HTML elements
+
 const   heroku = getE('basement'), // heroKU sphere
         container = getE('container'), // heroKU main container
         loader = getE('loader'), // preload screen
         blackHole = getE('blackHole') // blackHole gif
-
 
 // end of ALBUM OF ELEMENTAL VARIABLES
