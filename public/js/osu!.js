@@ -35,7 +35,8 @@ const bufferLength = analyserNode.frequencyBinCount, // the length for our raw d
       audioDataArray = new Float32Array(bufferLength) // our Float32bytes typedArray for saving raw data.
 
 // Finally, set up our audio graph (make sure all nodes connected are sorted and already declared).
-audioSourceNode.connect(lowpassFilter).connect(analyserNode).connect(audioContext.destination)
+audioSourceNode.connect(lowpassFilter).connect(analyserNode)
+audioSourceNode.connect(audioContext.destination)
 
 /* To run the analyser.getAnyFreqData(TypedArray) method while the audio is playing, we are going to seize the web API
 **      of requestAnimationFrame() which, being recursive, instance itself (more or less) 60 times per second. */
@@ -47,8 +48,8 @@ audioSourceNode.connect(lowpassFilter).connect(analyserNode).connect(audioContex
         /* freqBinCount divides audioContext.sampleRate (default = 48KHz) in fftSize/2 readable elements.
         ** Thus, each of the audioDataArray[i] contains 48000Hz/128 = 375Hz per channel. 
         ** Adjusting our fftSize value, we can tune the frequencies range in audioData[0] we want for our heroku to react */
-        heroku.style.transform = `scale(${0.1429 * (audioDataArray[0]/100 + 1) + 1})` 
-        // 0.1429 since the audioDataArray.maxDecibels = -30, hence: -30 + 1 = 70; 70 / 100 = 0.7; 0.7 * 0.01429 = 0.1
+        heroku.style.transform = `scale(${0.2143 * (audioDataArray[0]/100 + 1) + 1})` 
+        // 0.1429 since the audioDataArray.maxDecibels = -30, hence: -30 + 1 = 70; 70 / 100 = 0.7; 0.7 * 0.2143 = 0.15
 // OMG IT WORKED WTF ! XD    AAAAAAAAAAAAAAAAA
         window.requestAnimationFrame(beatDetection)     // Throw this code 60 times per second.
 }

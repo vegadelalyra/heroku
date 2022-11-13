@@ -1,8 +1,11 @@
 {
   "name": "heroku",
   "version": "1.0.0",
-  "description": "Soduku app called Heroku. Objective: learn about computational complexity",
+  "description": "Sudoku app called Heroku. Objective: learn about computational complexity",
   "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon src/index.js",
@@ -18,5 +21,13 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegadelalyra/heroku.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vegadelalyra/heroku/issues"
+  },
+  "homepage": "https://github.com/vegadelalyra/heroku#readme"
 }
