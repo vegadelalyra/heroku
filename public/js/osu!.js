@@ -1,5 +1,5 @@
 /* With this code, heroku! basement follows the beat.
-**  All of this was done with the Web Audio API, some javaScript, and a lot of CSS. Enjoy!
+**  All of this was done with the Web Audio API, the web API, some javaScript, and a lot of CSS. Enjoy!
 **  
 ** In order to code with Audio Web API,  your first move is to think your algorithm:
 ** Define your modular audio graph. For Heroku! this way: source > bidQuadFilter (lowpass) > analyser
@@ -30,8 +30,6 @@ const audioContext = new AudioContext(), // new audio context method to web Audi
 ** fftSize must be between 2^5 and 2^15, so one of: 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768. */
 analyserNode.fftSize = 256 // Defaults to 2048. In this case, we only need an animation, so no precision on data is needed.
 
-// .getByteFrequencyData() perform better, .getFloatFrequencyData() is more precise.
-
 // We need a place to save our audio raw data, that's going to be a typedArray with a defined length.
 const bufferLength = analyserNode.frequencyBinCount, // the length for our raw data typedArray (freqBinCount == half of fftSize)
       audioDataArray = new Float32Array(bufferLength) // our Float32bytes typedArray for saving raw data.
@@ -39,7 +37,19 @@ const bufferLength = analyserNode.frequencyBinCount, // the length for our raw d
 // Finally, set up our audio graph (make sure all nodes connected are sorted and already declared).
 audioSourceNode.connect(lowpassFilter).connect(analyserNode).connect(audioContext.destination)
 
-// Run the analyser.getFloatFreqData(ByteTypeArray) method while audio is playing
-while (introSong.paused === false ) {
-        analyserNode.getFloatFrequencyData(audioDataArray)      
+/* To run the analyser.getAnyFreqData(TypedArray) method while the audio is playing, we are going to seize the web API
+**      of requestAnimationFrame() which, being recursive, instance itself (more or less) 60 times per second. */
+      beatDetection = () => {
+        if (audioSourceNode.mediaElement.paused == true) return // If music has ended or is paused, stop the data gathering.
+        
+        analyserNode.getFloatFrequencyData(audioDataArray)      // Read actual frequencies of audio.
+
+        /* freqBinCount divides audioContext.sampleRate (default = 48KHz) in fftSize/2 readable elements.
+        ** Thus, each of the audioDataArray[i] contains 48000Hz/128 = 375Hz per channel. 
+        ** Adjusting our fftSize value, we can tune the frequencies range in audioData[0] we want for our heroku to react */
+        heroku.style.transform = `scale(${0.1429 * (audioDataArray[0]/100 + 1) + 1})` 
+        // 0.1429 since the audioDataArray.maxDecibels = -30, hence: -30 + 1 = 70; 70 / 100 = 0.7; 0.7 * 0.01429 = 0.1
+// OMG IT WORKED WTF ! XD    AAAAAAAAAAAAAAAAA
+        window.requestAnimationFrame(beatDetection)     // Throw this code 60 times per second.
 }
+// .getByteFrequencyData() performs better but it's less precise; .getFloatFrequencyData() is more precise but runs slower.  

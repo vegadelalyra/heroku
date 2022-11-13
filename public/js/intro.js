@@ -18,7 +18,7 @@
         setTimeout(letsGetStarted, 1500)
     })
 
-    // transform the whole dark page into HEROKU!
+    // transform the whole dark page into HEROKU! Run audioContext, beatDetection and play introSong
     function letsGetStarted() {
         soundEffect_kick.play()
         container.style.border = 'solid 2px white'
@@ -30,6 +30,7 @@
         heroku.removeEventListener('click', herokuClick)
         audioContext.state === 'suspended' ? audioContext.resume() : null
         introSong.play()
+        window.requestAnimationFrame(beatDetection)
     }
 
 // end of INTRO
