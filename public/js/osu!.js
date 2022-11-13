@@ -28,10 +28,13 @@ const audioContext = new AudioContext(), // new audio context method to web Audi
 ** Fourier Transform allows us to dock many signal waves into one expressed in sines and cosines. Don't you love maths? 
 ** fftSize analyserNode property adjusts the precision or performance of data. While bigger, preciser but slower. 
 ** fftSize must be between 2^5 and 2^15, so one of: 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768. */
-analyserNode.fftSize = 256 // Defaults to 2048. In this case, we only need an animation, so no precision on data is needed.
+analyserNode.fftSize = 32 // Defaults to 2048. In this case, we only need an animation, so no precision on data is needed.
+const reactionPercent = 0.2, scaleCoefficient = reactionPercent/0.7,
+// Adjusting our fftSize value, we can tune the frequencies range in audioData[0] we want for our heroku to react */
+// 0.1429 since the audioDataArray.maxDecibels = -30, hence: -30 + 1 = 70; 70 / 100 = 0.7; Reaction / 0.7 = Coefficient 
 
 // We need a place to save our audio raw data, that's going to be a typedArray with a defined length.
-const bufferLength = analyserNode.frequencyBinCount, // the length for our raw data typedArray (freqBinCount == half of fftSize)
+      bufferLength = analyserNode.frequencyBinCount, // the length for our raw data typedArray (freqBinCount == half of fftSize)
       audioDataArray = new Float32Array(bufferLength) // our Float32bytes typedArray for saving raw data.
 
 // Finally, set up our audio graph (make sure all nodes connected are sorted and already declared).
@@ -46,10 +49,8 @@ audioSourceNode.connect(audioContext.destination)
         analyserNode.getFloatFrequencyData(audioDataArray)      // Read actual frequencies of audio.
 
         /* freqBinCount divides audioContext.sampleRate (default = 48KHz) in fftSize/2 readable elements.
-        ** Thus, each of the audioDataArray[i] contains 48000Hz/128 = 375Hz per channel. 
-        ** Adjusting our fftSize value, we can tune the frequencies range in audioData[0] we want for our heroku to react */
-        heroku.style.transform = `scale(${0.2143 * (audioDataArray[0]/100 + 1) + 1})` 
-        // 0.1429 since the audioDataArray.maxDecibels = -30, hence: -30 + 1 = 70; 70 / 100 = 0.7; 0.7 * 0.2143 = 0.15
+        ** Thus, each of the audioDataArray[i] contains 48000Hz/128 = 375Hz per channel. */
+        heroku.style.transform = `scale(${scaleCoefficient * (audioDataArray[0]/100 + 1) + 1})` 
 // OMG IT WORKED WTF ! XD    AAAAAAAAAAAAAAAAA
         window.requestAnimationFrame(beatDetection)     // Throw this code 60 times per second.
 }
