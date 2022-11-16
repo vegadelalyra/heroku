@@ -29,7 +29,7 @@ const audioContext = new AudioContext(), // new audio context method to web Audi
 ** fftSize analyserNode property adjusts the precision or performance of data. While bigger, preciser but slower. 
 ** fftSize must be between 2^5 and 2^15, so one of: 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, and 32768. */
 const Fourier = 128// run these two lines in console to check the freq range of your array indexes.
-console.log( 48000 / ( Fourier / 2 ),'Hz' ) 
+// console.log( 48000 / ( Fourier / 2 ),'Hz' ) 
 analyserNode.fftSize = Fourier // Defaults to 2048. In this case, we only need an animation, so no precision on data is needed.
 const reactionPercent = 0.2, scaleCoefficient = reactionPercent/0.7,
 // Adjusting our fftSize value, we can tune the frequencies range in audioData[0] we want for our heroku to react */
